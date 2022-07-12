@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\CalendarController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', function() {
+Route::get('/user', function () {
     return view('user');
 });
 
-Route::get('/newuser', function() {
+Route::get('/newuser', function () {
     return view('newuser');
 });
 
-Route::get('/newsector', function(){
+Route::get('/newsector', function () {
     return view('newsector');
 });
 
-Route::get('/', [CalendarController::class, 'index']);
+Route::resource('/calendars', CalendarController::class);
