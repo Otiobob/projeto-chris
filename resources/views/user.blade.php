@@ -23,16 +23,22 @@
                 <th>Setor</th>
                 <th>CPF</th>
                 <th>Matrícula</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>183</td>
-                <td>Christoffer</td>
-                <td>STI</td>
-                <td>899.896.852-26</td>
-                <td>452152</td>
-              </tr>              
+              @foreach ($users as $user)
+                <tr>
+                  <td>{{ $user->id }}</td>
+                  <td>{{ $user->name }}</td>
+                  <td>STI - ARRUMAR</td>
+                  <td>{{ $user->cpf }}</td>
+                  <td>{{ $user->matricula }}</td>
+                  <td>
+                    <a href="{{ route('users.edit', $user) }}" class="fas fa-edit" ></a>
+                  </td>
+              </tr>         
+              @endforeach     
             </tbody>
           </table>
         </div>

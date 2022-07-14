@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\SectorController;
+use App\Http\Controllers\UserController;
+use App\Models\Sector;
+use App\Models\User;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +21,7 @@ use App\Http\Controllers\CalendarController;
 */
 
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 });
 
@@ -27,8 +33,17 @@ Route::get('/newuser', function () {
     return view('newuser');
 });
 
-Route::get('/newsector', function () {
-    return view('newsector');
-});
-
+//Rotas de Calendário
 Route::resource('/calendars', CalendarController::class);
+
+//Rotas de Usuários
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/newuser', [UserController::class, 'create'])->name('create.user');
+Route::post('/newuser',[UserController::class, 'store'])->name('newuser.store');
+Route::get('/user{id}/edit',[UserController::class, 'edit'])->name('users.edit');
+Route::put('/user{id}', [UserController::class, 'update'])->name('users.update');
+
+//Rotas de Setores
+Route::get('/newsector', [SectorController::class, 'create'])->name('create.sector');
+Route::get('/newsector', [SectorController::class, 'index'])->name('newsector');
+Route::post('/newsector', [SectorController::class, 'store'])->name('newsector.store');

@@ -15,32 +15,60 @@
               <!-- general form elements -->
               <div class="card ">
                 <div class="card-header">
-                  <h3 class="card-title">Novo Setor</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form>
+                <form action="{{ route('newsector.store') }}" method="POST">
+                  @csrf
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nome</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Digite o nome">
+                      <label for="name">Nome do Setor</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Secretaria Adjunta</label>
-                      <input type="" class="form-control" id="exampleInputPassword1" placeholder="SECRETARIA">
+                      <label for="secretaria">Secretaria Adjunta</label>
+                      <input type="text" class="form-control" id="secretaria" name="sec_adjunta" placeholder="Secretaria">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Alguma INFORMAÇÃO</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Digite o ALGUMA COISA">
+                      <label for="superintendente">Superintendente</label>
+                      <input type="text" class="form-control" id="superintendente" name="superintendente" placeholder="Superintendente">
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Alguma OUTRA INFORMAÇÃO</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Digite ALGUMA OUTRA COISA">
-                </div>
                 <div>
                   <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
+                </div><br>
+                <h3>Setores Cadastrados</h3>
                   <!-- /.card-body -->
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-header">
+                          
+                        </div>
+                        <!-- ./card-header -->
+                       
+                        <div class="card-body">
+                          <table class="table table-bordered table-hover">
+                            {{-- <h3>Setores Cadastrados</h3> --}}
+                            <thead>
+                              <tr>
+                                <th>ID</th>
+                                <th>Nome do Setor</th>
+                                <th>Secretária Adjunta</th>
+                                <th>Superintendente</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                  @foreach ($sectors as $sector)
+                                <tr>
+                                  <td>{{ $sector->id }}</td>
+                                  <td>{{ $sector->name }}</td>
+                                  <td>{{ $sector->sec_adjunta }}</td>
+                                  <td>{{ $sector->superintendente }}</td>
+                              </tr>         
+                              @endforeach 
+                            </tbody>
+                          </table>
+                        </div>
   
                   
               
